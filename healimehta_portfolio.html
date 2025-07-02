@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi, I'm Heali Mehta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #fafafa;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Section */
+        .header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.05"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.03"/><circle cx="20" cy="80" r="0.5" fill="white" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5em;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 50px;
+            max-width: 600px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+        }
+
+        /* Experience Section */
+        .experience-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .experience-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .experience-company {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .experience-date {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .experience-location {
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        .experience-description {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        .experience-achievements {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .experience-achievements li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .experience-achievements li::before {
+            content: '●';
+            color: #667eea;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-header {
+            padding: 30px 30px 0;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        .project-tech {
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .project-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stat-badge {
+            background: #f7fafc;
+            color: #667eea;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-links {
+            padding: 0 30px 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .project-link.secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .project-link.secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .achievement-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .achievement-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .achievement-description {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .education-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
+        }
+
+        .education-degree {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .education-school {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .education-details {
+            display: flex;
+            justify-content: space-between;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-item a {
+            color: #2d3748;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            color: #667eea;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .about-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section backgrounds */
+        .section:nth-child(even) {
+            background: #f7fafc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-content">
+            <div class="logo">Heali Mehta</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="header">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Hi, I'm Heali Mehta</h1>
+                <p class="hero-subtitle">Data Scientist & Machine Learning Engineer</p>
+                <p class="hero-description">
+                    Master's in Computer Science student at Texas State University and an aspiring Data Scientist and AI/ML Engineer. 
+                    Passionate about using data to solve real-world problems, find patterns, and build intelligent systems that matter.
+                    My journey with data science has led me through exciting projects in computer vision, NLP, and predictive analytics.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Driven by curiosity and powered by data</p>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Heali, a Master's in Computer Science student at Texas State University with a Data Science concentration. 
+                    My journey began through academic and professional experiences, where I discovered my passion for leveraging data to solve complex problems.</p>
+                    
+                    <p>I recently worked as a Data Engineer at Shreem Solarium and Business Intelligence Analyst at Saptarishi Furniture, 
+                    where I built machine learning models, automated workflows, and supported data-driven business decisions. 
+                    I've been diving deeper into computer vision, NLP, and deep learning while building expertise with PyTorch, TensorFlow, and cloud technologies.</p>
+                    
+                    <p>Outside of tech, I enjoy exploring new technologies, working on research projects, and constantly learning. 
+                    Life, like data, is more interesting when you're curious and willing to explore patterns.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">93%</div>
+                        <div class="stat-label">CNN Model Accuracy</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Recommendation Precision</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-label">Data Points Analyzed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3rd</div>
+                        <div class="stat-label">Place Datathon 2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-subtitle">Building expertise through hands-on projects and research</p>
+            <div class="experience-grid">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-company">Texas State University</div>
+                            <div class="experience-title">Graduate Research Assistant</div>
+                            <div class="experience-location">San Marcos, Texas, United States · On-site</div>
+                        </div>
+                        <div class="experience-date">Jan 2024 – May 2025</div>
+                    </div>
+                    <div class="experience-description">
+                        Collaborating on advanced data mining research projects focusing on text and semantic analysis.
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Developed a web app using Python, Flask, PHP, and HTML/CSS for advanced lyric-based document retrieval</li>
+                        <li>Achieved 85% retrieval accuracy through TF-IDF, context-aware search logic, and ranking techniques</li>
+                        <li>Processed and analyzed data across 5,000 songs with optimized text preprocessing methods</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-company">Shreem Solarium</div>
+                            <div class="experience-title">Data Engineer</div>
+                            <div class="experience-location">Vadodara, Gujarat, India · On-site</div>
+                        </div>
+                        <div class="experience-date">Sep 2022 – May 2023</div>
+                    </div>
+                    <div class="experience-description">
+                        Engineered machine learning solutions for solar panel maintenance prediction and optimization.
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Built Random Forest model for solar panel maintenance prediction achieving over 85% accuracy</li>
+                        <li>Utilized Docker and Git for containerization and version control of model deployments</li>
+                        <li>Developed Flask REST API for real-time predictions integrated with Laravel web applications</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-company">Saptarishi Furniture</div>
+                            <div class="experience-title">Business Intelligence Analyst</div>
+                            <div class="experience-location">Vadodara, Gujarat, India · On-site</div>
+                        </div>
+                        <div class="experience-date">Jan 2022 – Aug 2022</div>
+                    </div>
+                    <div class="experience-description">
+                        Developed intelligent recommendation systems and automated analytics pipelines for e-commerce optimization.
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Developed TF-IDF-based product recommendation system using cosine similarity</li>
+                        <li>Improved cross-sell precision by 80% and enhanced decision-making for marketing teams</li>
+                        <li>Built SQL and Python pipelines to automate workflows into analytical dashboards</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-company">YokeMate</div>
+                            <div class="experience-title">Machine Learning Intern</div>
+                            <div class="experience-location">Vadodara, Gujarat, India · Remote</div>
+                        </div>
+                        <div class="experience-date">Jan 2021 – Nov 2021</div>
+                    </div>
+                    <div class="experience-description">
+                        Created data-driven modules for food delivery system optimization and user experience enhancement.
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Developed data-driven modules including login systems, delivery logic, and chatbot integration</li>
+                        <li>Worked in Agile sprints, increasing team velocity by 15% through effective backlog grooming</li>
+                        <li>Contributed to building scalable food delivery platform with intelligent features</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">Solving real-world problems with data science and machine learning</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Skin Cancer Detection System</h3>
+                        <p class="project-tech">Python, TensorFlow, CNN, Computer Vision</p>
+                        <p class="project-description">
+                            Developed and trained a Convolutional Neural Network model for classifying skin lesions with exceptional accuracy metrics.
+                            The system demonstrates the potential of AI in medical diagnosis and early disease detection.
+                        </p>
+                        <div class="project-stats">
+                            <span class="stat-badge">93.59% Accuracy</span>
+                            <span class="stat-badge">92.14% Sensitivity</span>
+                            <span class="stat-badge">95.22% Specificity</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/HealiMehta/DataScience" class="project-link">View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Movie Recommendation System</h3>
+                        <p class="project-tech">Python, TF-IDF, Cosine Similarity, NLP</p>
+                        <p class="project-description">
+                            Developed a content-based movie recommendation engine utilizing TF-IDF vectorization and cosine similarity, 
+                            effectively analyzing a dataset of over 5,000 movie plots to provide personalized recommendations.
+                        </p>
+                        <div class="project-stats">
+                            <span class="stat-badge">85% Precision</span>
+                            <span class="stat-badge">5000+ Movies</span>
+                            <span class="stat-badge">Content-Based</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/HealiMehta/DataScience" class="project-link">View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Generative AI Model</h3>
+                        <p class="project-tech">Python, OpenAI API, Fine-tuning</p>
+                        <p class="project-description">
+                            Gained hands-on experience with OpenAI APIs and fine-tuned model performance for specific text generation tasks 
+                            while achieving optimized response times for real-world applications.
+                        </p>
+                        <div class="project-stats">
+                            <span class="stat-badge">&lt;1.2s Response</span>
+                            <span class="stat-badge">OpenAI Integration</span>
+                            <span class="stat-badge">Fine-tuned</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/HealiMehta/DataScience" class="project-link">View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Lyric-Based Document Retrieval</h3>
+                        <p class="project-tech">Python, Flask, PHP, TF-IDF, Search Algorithms</p>
+                        <p class="project-description">
+                            Advanced web application for keyword-in-context search across large music datasets using sophisticated 
+                            text processing, ranking algorithms, and context-aware search logic.
+                        </p>
+                        <div class="project-stats">
+                            <span class="stat-badge">5000+ Songs</span>
+                            <span class="stat-badge">85% Accuracy</span>
+                            <span class="stat-badge">Context-Aware</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/HealiMehta/DataScience/tree/main/Project_AdvDatamining" class="project-link">View Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+<section id="skills" class="section">
+    <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-subtitle">Technologies and tools I’ve worked with</p>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Programming & Scripting</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">Bash</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Linux System Programming</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Data Analysis & Visualization</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Redshift</span>
+                    <span class="skill-tag">Data Lakes</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Excel</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">Seaborn</span>
+                    <span class="skill-tag">Tableau</span>
+                    <span class="skill-tag">TensorBoard</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Machine Learning & Deep Learning</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Scikit-learn</span>
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Keras</span>
+                    <span class="skill-tag">JAX (basic)</span>
+                    <span class="skill-tag">OpenCV</span>
+                    <span class="skill-tag">Random Forest</span>
+                    <span class="skill-tag">Logistic Regression</span>
+                    <span class="skill-tag">Time Series</span>
+                    <span class="skill-tag">Clustering</span>
+                    <span class="skill-tag">TF-IDF</span>
+                    <span class="skill-tag">A/B Testing</span>
+                    <span class="skill-tag">Computer Vision (CNNs)</span>
+                    <span class="skill-tag">NLP (LLM fine-tuning)</span>
+                    <span class="skill-tag">Recommender Systems</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>ML Engineering & MLOps</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Airflow</span>
+                    <span class="skill-tag">MLflow</span>
+                    <span class="skill-tag">FastAPI</span>
+                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">REST APIs</span>
+                    <span class="skill-tag">CI/CD</span>
+                    <span class="skill-tag">AWS (Glue, S3, EC2, Lambda)</span>
+                    <span class="skill-tag">Kubernetes (basic)</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Systems & Architecture</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">GPU Acceleration</span>
+                    <span class="skill-tag">CUDA</span>
+                    <span class="skill-tag">Model Quantization</span>
+                    <span class="skill-tag">Pruning</span>
+                    <span class="skill-tag">Memory Profiling</span>
+                    <span class="skill-tag">Compute Profiling</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Tools & Frameworks</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">PyTorch Lightning</span>
+                    <span class="skill-tag">XLA</span>
+                    <span class="skill-tag">Triton</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Achievements Section -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Achievements</h2>
+        <p class="section-subtitle">Recognition for innovation and excellence in data science</p>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-badge">3rd Place – Datathon 2025</div>
+                <h3 class="achievement-title">Healthcare Distribution Analysis in Austin</h3>
+                <p class="achievement-description">
+                    Led a team of 4 in TXST Datathon 2025, where we analyzed the spatial distribution of hospitals in Austin relative to population density.
+                    We developed an interactive dashboard and performed geospatial analysis using datasets from the 
+                    <a href="https://lnkd.in/gzbEVsS7" target="_blank">Texas State Data Repository</a>, delivering actionable insights to enhance healthcare accessibility.
+                    Our project secured 3rd place in the graduate division.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- Contact Section -->
+<section id="contact" class="section">
+    <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">Let’s connect and build something meaningful</p>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <a href="tel:+17372984978">+1 (737) 298-4978</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <a href="mailto:healimehta00@gmail.com">healimehta00@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💼</div>
+                    <a href="https://www.linkedin.com/in/healimehta/" target="_blank">LinkedIn Profile</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">👨‍💻</div>
+                    <a href="https://github.com/HealiMehta" target="_blank">GitHub Profile</a>
+                </div>
+            </div>
+            <div>
+                <p class="about-text">
+                    Feel free to reach out for collaboration, freelance projects, or just a friendly chat about all things data and machine learning.
+                    I’m always open to exciting opportunities and meaningful conversations!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
